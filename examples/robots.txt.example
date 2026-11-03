@@ -1,0 +1,53 @@
+# Example robots.txt for sites that want:
+# - Training / grounding crawler opt-out where vendors honor robots.txt
+# - Optional Allow for AI *search* bots when the site wants GEO / citations
+#
+# robots.txt expresses preferences. It is not access control or enforcement.
+# Keep a living User-Agent list (e.g. https://darkvisitors.com/agents) and
+# re-check vendor docs; names and policies change.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# OpenAI search / citation-oriented crawler — Allow if you want discoverability
+# in AI answers; Disallow if you prefer maximum opt-out.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Googlebot itself is for Search — usually leave Allow unless you have a
+# separate reason to block indexing.
+User-agent: Googlebot
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# Default: allow ordinary browsers and search indexing unless you decide otherwise.
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml

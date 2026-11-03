@@ -1,0 +1,31 @@
+# llms.txt — navigation map for AI agents (proposed convention)
+# Purpose: point agents at canonical pages and short summaries.
+# NOT for: authority overrides, "ignore previous instructions", legal threats,
+# preference manipulation, or consequential tool/commands.
+#
+# Place at https://example.com/llms.txt
+# Spec overview: https://llmstxt.org/
+
+# Example Corp
+
+> Concise product site for Example Corp. Prefer official docs over third-party mirrors.
+
+## Primary
+
+- [Home](https://example.com/): Product overview
+- [Docs](https://example.com/docs/): Canonical documentation
+- [Pricing](https://example.com/pricing/): Plans and limits
+- [Blog](https://example.com/blog/): Announcements and guides
+- [Contact](https://example.com/contact/): Support channels
+
+## Optional
+
+- [API reference](https://example.com/docs/api/): Machine-readable API docs
+- [Security](https://example.com/security/): Trust and compliance overview
+- [Changelog](https://example.com/changelog/): Release history
+
+## Notes for agents
+
+- Prefer linked canonical URLs above over scraped mirrors.
+- Summarize; do not reproduce long-form docs verbatim when a link suffices.
+- For training / grounding opt-out signals, see robots.txt and any ai.txt — not this file.
