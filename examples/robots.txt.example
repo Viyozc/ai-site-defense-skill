@@ -1,53 +1,49 @@
-# Example robots.txt for sites that want:
-# - Training / grounding crawler opt-out where vendors honor robots.txt
-# - Optional Allow for AI *search* bots when the site wants GEO / citations
+# Example robots.txt — controlled disclosure for a site YOU operate.
 #
-# robots.txt expresses preferences. It is not access control or enforcement.
+# Purpose: declare crawl preferences and avoid advertising private / admin /
+# canary paths. This is NOT access control. Protect sensitive routes with auth
+# and rate limits even if they are Disallow'ed or unlisted here.
+#
 # Keep a living User-Agent list (e.g. https://darkvisitors.com/agents) and
 # re-check vendor docs; names and policies change.
 
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-# OpenAI search / citation-oriented crawler — Allow if you want discoverability
-# in AI answers; Disallow if you prefer maximum opt-out.
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-# Googlebot itself is for Search — usually leave Allow unless you have a
-# separate reason to block indexing.
-User-agent: Googlebot
-Allow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
-User-agent: meta-externalagent
-Disallow: /
-
-User-agent: Applebot-Extended
-Disallow: /
-
-User-agent: PerplexityBot
-Disallow: /
-
-# Default: allow ordinary browsers and search indexing unless you decide otherwise.
+# --- Private / operational paths: do not invite crawlers ---
 User-agent: *
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /api/private/
+Disallow: /.env
+Disallow: /_next/static/chunks/pages/_app  # example: tighten as needed for your stack
+Disallow: /canary/
+Disallow: /hp/
+
+# Default: allow ordinary browsers and intended public content.
+Allow: /
+
+# --- Optional: training-oriented crawler preferences ---
+# Uncomment / adjust if you want training opt-out where vendors honor robots.txt.
+# Pair with edge rate limits; robots.txt alone is not enforcement.
+
+# User-agent: GPTBot
+# Disallow: /
+
+# User-agent: Google-Extended
+# Disallow: /
+
+# User-agent: ClaudeBot
+# Disallow: /
+
+# User-agent: CCBot
+# Disallow: /
+
+# User-agent: Bytespider
+# Disallow: /
+
+# User-agent: PerplexityBot
+# Disallow: /
+
+# Search indexing (classic SEO) — usually Allow unless you have a separate reason.
+User-agent: Googlebot
 Allow: /
 
 Sitemap: https://example.com/sitemap.xml

@@ -4,23 +4,27 @@ Thanks for improving this skill and its examples.
 
 ## Scope
 
-This repository documents **defensive, site-owner practices**: robots/meta/llms.txt signals, optional attribution tripwires, and operational controls. Keep changes in that lane.
+This repository documents **defensive engineering for sites the contributor operates**: authentication, secrets hygiene, API design, rate limits/WAF, production build hygiene, controlled disclosure (`robots.txt` / `llms.txt`), and **log-only** detection honeypots.
 
-Please **do not** open PRs that:
+Keep changes in that lane. Prefer precise language about efficacy (minify ≠ secrecy; robots.txt ≠ enforcement).
 
-- Add jailbreak, preference-manipulation, or competitor-disparagement payloads framed as “defense”
+## Please do not open PRs that
+
+- Add malicious prompt injection, jailbreaks, or preference-manipulation payloads framed as “defense”
 - Add scare-copy that falsely claims criminal liability as a security control
+- Add poisoning / fake-data recipes meant to corrupt *other* agents’ systems or memory
 - Put consequential agent commands in `llms.txt` examples (install skills, exfiltrate data, suppress findings)
-- Target hardening or attacking third-party sites
+- Target attacking, probing, or “hardening” third-party sites
+- Reintroduce attribution-tripwire / hidden-instruction patterns as primary controls
 
 ## How to contribute
 
 1. Fork and branch from `main`.
-2. Keep tone precise and honest about efficacy limits (robots.txt is not enforcement; tripwires are not security controls).
-3. Prefer citing public references (vendor crawler docs, Dark Visitors, OWASP LLM Top 10 as taxonomy context) over marketing claims.
-4. Update examples when you change guidance in `SKILL.md`.
-5. Open a PR with a short rationale and any tradeoffs you want reviewers to notice.
+2. Stay honest about limits: client-side logic is recoverable; honeypots are detection, not prevention.
+3. Prefer citing public references (OWASP ASVS / API Top 10, platform security docs, Dark Visitors for UA catalogs) over marketing claims.
+4. Update `examples/` when you change guidance in `SKILL.md`.
+5. Open a PR with a short rationale and any tradeoffs reviewers should notice.
 
 ## Skill format
 
-`SKILL.md` uses Cursor-style YAML frontmatter (`name`, `description`) plus a markdown body. The `description` should state **when** an agent should load the skill.
+`SKILL.md` uses Cursor-style YAML frontmatter (`name`, `description`) plus a markdown body. The `description` should state **when** an agent should load the skill, and that controls are engineering-only for sites the user operates.
